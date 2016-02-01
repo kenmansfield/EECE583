@@ -1,0 +1,49 @@
+Processing impossible2.infile file..
+./assignment1.exe impossible2.infile 3
+*** Unable to route this circuit after 6 premutations ***
+
+Processing impossible.infile file..
+./assignment1.exe impossible.infile 3
+*** Unable to route this circuit after 6 premutations ***
+
+Processing kuma.infile file..
+./assignment1.exe kuma.infile 3
+*** Unable to route this circuit after 24 premutations ***
+
+Processing misty.infile file..
+./assignment1.exe misty.infile 3
+Trying nets in this order: 1 0 3 2 
+*** Successfully routed all nets ***
+
+Processing oswald.infile file..
+./assignment1.exe oswald.infile 3
+*** Unable to route this circuit after 2 premutations ***
+
+Processing rusty.infile file..
+./assignment1.exe rusty.infile 3
+Trying nets in this order: 0 2 1 
+*** Successfully routed all nets ***
+
+Processing stanley.infile file..
+./assignment1.exe stanley.infile 3
+Trying nets in this order: 0 2 1 
+*** Successfully routed all nets ***
+
+Processing stdcell.infile file..
+./assignment1.exe stdcell.infile 3
+*** Unable to route this circuit after 10001 premutations ***
+
+Processing sydney.infile file..
+./assignment1.exe sydney.infile 3
+Trying nets in this order: 0 2 1 
+*** Successfully routed all nets ***
+
+Processing temp.infile file..
+./assignment1.exe temp.infile 3
+*** Unable to route this circuit after 10001 premutations ***
+
+Processing wavy.infile file..
+./assignment1.exe wavy.infile 3
+Trying nets in this order: 0 
+*** Successfully routed all nets ***
+
