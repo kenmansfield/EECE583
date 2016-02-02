@@ -330,7 +330,7 @@ static void drawgrid (void) {
         } 
  
 // clearscreen();  /* Should be first line of all drawscreens */
- setfontsize (10);
+ setfontsize (6);
  setlinestyle (SOLID);
  setlinewidth (2);
  setcolor (BLACK);
