@@ -25,6 +25,7 @@ vector< vector<int> > vNetFile;
 
 float sBoxDim = 0;
 static const int WIDTH = 1000;
+const int LEFT_EDGE = 80;
 float TOP_BORDER = 60;
 float sWidthStretchForText = 1.5;
 
@@ -37,6 +38,9 @@ int sNumColumns = 0;
 static float sDelayModifier = 1.0f;
 static bool sNoAnimation = false;
 static bool sfinalAnimation = true;
+static bool sDoFastAnneal = false;
+
+static string sFileName = "";
 
 bool ReadNetFile(string fileName)
 {
@@ -48,7 +52,7 @@ bool ReadNetFile(string fileName)
 
     if(!infile.is_open())
     {
-        return 0;
+        return false;
     }
 
     int i = 0;
@@ -64,23 +68,16 @@ bool ReadNetFile(string fileName)
         vNetFile.push_back(tempVec);
         i++;
     }
-//    cout << "hello world!!\n";
-//
-//    for(int i = 0; i < vNetFile.size(); i++)
-//    {
-//    	for(int j = 0; j < vNetFile.at(i).size(); j++)
-//    	{
-//    		cout << vNetFile.at(i).at(j) << " ";
-//    	}
-//
-//    	cout << endl;
-//
-//    }
+
     return ParseNetFile();
 }
 
 bool ParseNetFile()
 {
+	if(vNetFile.size() < 3)
+	{
+		return false;
+	}
 	sNumCells = vNetFile.at(0).at(0);
 	sNumConnection = vNetFile.at(0).at(1);
 	sNumRows = vNetFile.at(0).at(2);
@@ -88,21 +85,24 @@ bool ParseNetFile()
 
 	//Removing the first line, so that our vector is now just nets.
 	vNetFile.erase(vNetFile.begin());
-	cout << "vnetfile size: " << vNetFile.size() << " num connections: " << sNumConnection << endl;
 
+	cout << "\nNumber of Cells: " << sNumCells << "\nNum Nets: " << sNumConnection << endl;
+
+	return true;
 	//it seems like some files num connection doesn't match up to the actual number of nets!
 	//assert(vNetFile.size() - 1 == sNumConnection);
 }
 
 void DrawGrid()
 {
+	sBoxDim = WIDTH/(sNumRows * 2 + 1);
+	if(!sfinalAnimation) {return;}
+
 	int boxSize;
 
 	setlinestyle (SOLID);
 	setlinewidth (1);
 	setcolor (BLACK);
-
-	sBoxDim = WIDTH/(sNumRows * 2 + 1);
 
 	for(int i = 0; i < sNumColumns; i++)
 	{
@@ -126,16 +126,11 @@ void DrawNumbers(Point p, int x)
 
 void setTextFill(Point p, string text, int color)
 {
-    if(sNoAnimation)
-    {
-        return;
-    }
-
 	//I think this is the top left, so need to offset it to the centre. And also make sure the font size is suitable.
 	Vertice v = GetLocationToDraw(p);
 
 	float font_height = sBoxDim/2;
-	float offset = sWidthStretchForText*sBoxDim/2;
+	float offset = sWidthStretchForText*sBoxDim/2 - LEFT_EDGE;
     setcolor(color);
     drawtext(v.x + offset, v.y + font_height, const_cast<char*>(text.c_str()), 100);
     //flushinput();
@@ -143,8 +138,10 @@ void setTextFill(Point p, string text, int color)
 
 Point GetLocation(Point p)
 {
-	//There is one space between each row for the routing.
-	int yOffset = (int(p.y - 1));
+	//There is one space between each row for the routing. So just double the Y position.
+	int yOffset = 0;
+	yOffset = p.y;
+
 	int posY = (p.y) + yOffset;
 	int posX = p.x;
 
@@ -155,7 +152,7 @@ Point GetLocation(Point p)
 Vertice GetLocationToDraw(Point P)
 {
 	Point tempPoint = GetLocation(P);
-	return Vertice(sBoxDim * sWidthStretchForText * float(tempPoint.x), sBoxDim * float(tempPoint.y)  + TOP_BORDER);
+	return Vertice(sBoxDim * sWidthStretchForText * float(tempPoint.x) - LEFT_EDGE, sBoxDim * float(tempPoint.y)  + TOP_BORDER);
 }
 
 void ColourRect(Point x)
@@ -166,7 +163,7 @@ void ColourRect(Point x)
 
 	Vertice v = GetLocationToDraw(x);
 	float offset = sBoxDim/2;
-	drawrect (v.x, v.y, v.x + sBoxDim*sWidthStretchForText, v.y + sBoxDim);
+	drawrect (v.x- LEFT_EDGE, v.y, v.x + sBoxDim*sWidthStretchForText - LEFT_EDGE, v.y + sBoxDim);
 }
 
 static void button_press (float x, float y) {
@@ -177,6 +174,8 @@ static void drawscreen (void) {
 
 void InitGraphics()
 {
+	if(!sfinalAnimation) {return;}
+
 	init_graphics("Simulated Annealing");
 
     //clearscreen();
@@ -190,6 +189,7 @@ void InitGraphics()
 
 void Delay(int time)
 {
+	if(!sfinalAnimation) {return;}
     //convert from milliseconds to useconds
     if(sDelayModifier == 0)
     {
@@ -227,7 +227,10 @@ void InitBoard()
 
 		//And Draw!
 		//cout << i << " ";
-		DrawNumbers(Point(x,y), i);
+		if(sfinalAnimation)
+		{
+			DrawNumbers(Point(x,y), i);
+		}
 	}
 
 	for(int i = 0; i < vNetFile.size(); i++)
@@ -262,6 +265,8 @@ void SwapCells(int cell1, int cell2, Point point1, Point point2)
 void ScheduleAnneal()
 {
 	const int iterations = pow(sNumColumns*sNumRows, 4.f/3.f);
+
+	cout << "The number of swaps that will be performed per each Temperature is: " << iterations << endl;
 	int numAccepted = 0;
 
 	//need to shake up the board a bit since I didn't randomize the board.
@@ -270,7 +275,7 @@ void ScheduleAnneal()
 
 	//Display starting cost.
 	double startCost = CostOfAllNets();
-	cout << "The start total is: " << startCost << endl;
+	cout << "The total cost of all nets after initial random placement is: " << startCost << endl;
 	const int maxWindowShrinkage = float(min(sNumColumns, sNumRows))*.5;
 	int currentWindowSizeReduction = 0;
 
@@ -278,15 +283,16 @@ void ScheduleAnneal()
 	double STD = EstimateSTD();
 	double Temperature = 20 * STD;
 
+	cout << "The starting temperature is: " << Temperature << endl;
+
 	int numberOfTemperatureIterations = 0;
 	double acceptanceRate = 0;
 
-	double fastAnnealB1 = 0.9;
-	double fastAnnealB2 = 0.99;
-	const bool doFastAnneal = false;
+	double fastAnnealB1 = 0.94;
+	double fastAnnealB2 = 0.985;
 
-	double slowAnnealB1 = 0.99;
-	double slowAnnealB2 = 0.999;
+	double slowAnnealB1 = 0.991;
+	double slowAnnealB2 = 0.997;
 
 	while(true)
 	{
@@ -297,10 +303,10 @@ void ScheduleAnneal()
 		acceptanceRate = ((double)numAccepted)/((double)(iterations));
 
 		double Beta = slowAnnealB1;
-		if(doFastAnneal)
+		if(sDoFastAnneal)
 		{
 			Beta = fastAnnealB1;
-			if(acceptanceRate < 0.5 && acceptanceRate > 0.25)
+			if(acceptanceRate < 0.5 && acceptanceRate > 0.3)
 			{
 				Beta = fastAnnealB2;
 			}
@@ -308,7 +314,7 @@ void ScheduleAnneal()
 		}
 		else
 		{
-			if(acceptanceRate < 0.5 && acceptanceRate > 0.25)
+			if(acceptanceRate < 0.5 && acceptanceRate > 0.3)
 			{
 				Beta = slowAnnealB2;
 			}
@@ -338,28 +344,34 @@ void ScheduleAnneal()
 
 		if(acceptanceRate <= 0.000001f)	//basically just want it to end when acceptance is 0.
 		{
-			//now, one last anneal at 0 temp!!
+			//now, two last anneals at 0 temp!!
 			DoAnnealing(0.f, iterations, currentWindowSizeReduction, numAccepted);
 			DoAnnealing(0.f, iterations, currentWindowSizeReduction, numAccepted);
 			break;
 		}
 
+		if(!sNoAnimation)
+		{
+			//Status update
+			char buff[150];
+			sprintf(buff, "T=%.4f AcptRt=%.5f TIterations=%i", Temperature, acceptanceRate,numberOfTemperatureIterations);
+			update_message( buff );
+			flushinput();
+			Redraw();
+			Delay(20);
+		}
+	}
 
-		//Status update
+	if(sfinalAnimation)
+	{
 		char buff[150];
 		sprintf(buff, "T=%.4f AcptRt=%.5f TIterations=%i", Temperature, acceptanceRate,numberOfTemperatureIterations);
 		update_message( buff );
-		flushinput();
 		Redraw();
-		Delay(1);
 	}
 
-	char buff[150];
-	sprintf(buff, "T=%.4f AcptRt=%.5f TIterations=%i", Temperature, acceptanceRate,numberOfTemperatureIterations);
-	update_message( buff );
-	Redraw();
 	startCost = CostOfAllNets();
-	cout << "The final total is: " << startCost << " after " << numberOfTemperatureIterations << " iterations" << endl;
+	cout << "The total cost of all nets after final placement is: " << startCost << "\nAfter " << numberOfTemperatureIterations << " Temperature Iterations!" << endl << endl;
 
 }
 
@@ -371,7 +383,7 @@ double EstimateSTD()
 	for(int i = 0; i < 50; i++)
 	{
 		int randomNet = rand() % sNumConnection;
-		int thisCost = CostOfNet(i);
+		int thisCost = CostOfNet(randomNet);
 		costs.push_back(thisCost);
 		mean += thisCost;
 	}
@@ -537,6 +549,7 @@ float CostOfCell(int cellA)
 
 void Redraw()
 {
+	if(!sfinalAnimation) {return;}
 	clearscreen();
 	DrawGrid();
 	for(int i = 0; i < sCells.size(); i++)
@@ -547,14 +560,70 @@ void Redraw()
 
 int main (int argc, char *argv[])
 {
-	string FileName = "paira.txt";
-	ReadNetFile(FileName);
+    if(argc != 4)
+    {
+        cout << "bad arguments. usage: assignment2.exe [filename] [display mode] [anneal mode]\nie. assignment2.exe hello.net 1 0\nDisplay Mode 0 = regular\n\t1 = Slower animations\n\t2 = final graphics only\n\t3 = no display at all (text only)\n";
+        cout << "Anneal Mode: 0 = Normal\n\t1 = fast anneal (faster T increases)\n";
+        return 0;
+    }
+    sFileName = string(argv[1]);
+
+     int mode = atoi(argv[2]);
+     //cout << "the mode: " << mode << endl;
+     if(mode < 0 || mode > 3)
+     {
+         cout << "incorrect mode!\n";
+         return 0;
+     }
+     else
+     {
+         if(mode == 0)
+         {
+        	 sDelayModifier = 0.1f;
+         }
+         else if(mode == 1)
+         {
+        	 //do nothing.
+         }
+         else if(mode == 2)
+         {
+             sDelayModifier = 0.f;
+             sNoAnimation = true;
+         }
+         else
+         {
+             sDelayModifier = 0.f;
+             sNoAnimation = true;
+             sfinalAnimation = false;
+         }
+     }
+
+     int annealMode = atoi(argv[3]);
+     //cout << "the mode: " << mode << endl;
+     if(annealMode == 1)
+     {
+    	 sDoFastAnneal = true;
+     }
+     else if(annealMode < 0 || annealMode > 1)
+     {
+    	 cout << "\nIncorrect anneal mode (3rd argument), valid options are 0, or 1\n\n";
+     }
+
+	if(!ReadNetFile(sFileName))
+	{
+		cout << "\n\n******Error reading netfile!!\n\n";
+		return 0;
+	}
+
 	InitGraphics();
 
 	DrawGrid();
 	InitBoard();
 	ScheduleAnneal();
 
-    while(true) {Delay(1000);}
+	if(sfinalAnimation)
+	{
+		while(true) {Delay(1000);}
+	}
 }
 
