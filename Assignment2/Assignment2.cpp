@@ -86,6 +86,19 @@ bool ParseNetFile()
 	//Removing the first line, so that our vector is now just nets.
 	vNetFile.erase(vNetFile.begin());
 
+	//Now remove the first item from each line, forgot to do this for annealing!
+	for(int i = 0; i < vNetFile.size(); i++)
+	{
+		if(vNetFile[i].size() > 0)
+		{
+			vNetFile[i].erase(vNetFile[i].begin());
+		}
+		else
+		{
+			vNetFile.erase(vNetFile.begin() + i);
+		}
+	}
+
 	cout << "\nNumber of Cells: " << sNumCells << "\nNum Nets: " << sNumConnection << endl;
 
 	return true;

@@ -1,0 +1,6 @@
+23:19:39 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+
+23:19:40 Build Finished (took 203ms)
+

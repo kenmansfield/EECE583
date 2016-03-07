@@ -1,0 +1,121 @@
+km@km-VirtualBox:~/University/EECE583/Assignment2$ ./testAllFiles.sh
+Processing alu2.txt file..
+./Assignment2.exe alu2.txt 3 0
+
+Number of Cells: 213
+Num Nets: 207
+The number of swaps that will be performed per each Temperature is: 2704
+The total cost of all nets after initial random placement is: 6637
+The starting temperature is: 157.536
+The total cost of all nets after final placement is: 2417
+After 1482 Temperature Iterations!
+Processing apex1.txt file..
+./Assignment2.exe apex1.txt 3 0
+
+Number of Cells: 786
+Num Nets: 741
+The number of swaps that will be performed per each Temperature is: 7875
+The total cost of all nets after initial random placement is: 41264
+The starting temperature is: 267.619
+The total cost of all nets after final placement is: 16016
+After 1520 Temperature Iterations!
+Processing apex4.txt file..
+./Assignment2.exe apex4.txt 3 0
+
+Number of Cells: 1290
+Num Nets: 1271
+The number of swaps that will be performed per each Temperature is: 15661
+The total cost of all nets after initial random placement is: 83552
+The starting temperature is: 378.793
+The total cost of all nets after final placement is: 32559
+After 1566 Temperature Iterations!
+Processing C880.txt file..
+./Assignment2.exe C880.txt 3 0
+
+Number of Cells: 260
+Num Nets: 234
+The number of swaps that will be performed per each Temperature is: 2008
+The total cost of all nets after initial random placement is: 7200
+The starting temperature is: 192.971
+The total cost of all nets after final placement is: 2876
+After 1468 Temperature Iterations!
+Processing cm138a.txt file..
+./Assignment2.exe cm138a.txt 3 0
+
+Number of Cells: 24
+Num Nets: 16
+The number of swaps that will be performed per each Temperature is: 101
+The total cost of all nets after initial random placement is: 142
+The starting temperature is: 46.6287
+The total cost of all nets after final placement is: 72
+After 1293 Temperature Iterations!
+Processing cm150a.txt file..
+./Assignment2.exe cm150a.txt 3 0
+
+Number of Cells: 36
+Num Nets: 35
+The number of swaps that will be performed per each Temperature is: 136
+The total cost of all nets after initial random placement is: 328
+The starting temperature is: 64.1448
+The total cost of all nets after final placement is: 162
+After 1331 Temperature Iterations!
+Processing cm151a.txt file..
+./Assignment2.exe cm151a.txt 3 0
+
+Number of Cells: 22
+Num Nets: 20
+The number of swaps that will be performed per each Temperature is: 256
+The total cost of all nets after initial random placement is: 227
+The starting temperature is: 61.4765
+The total cost of all nets after final placement is: 75
+After 2691 Temperature Iterations!
+Processing cm162a.txt file..
+./Assignment2.exe cm162a.txt 3 0
+
+Number of Cells: 37
+Num Nets: 32
+The number of swaps that will be performed per each Temperature is: 204
+The total cost of all nets after initial random placement is: 397
+The starting temperature is: 69.1954
+The total cost of all nets after final placement is: 161
+After 1357 Temperature Iterations!
+Processing cps.txt file..
+./Assignment2.exe cps.txt 3 0
+
+Number of Cells: 882
+Num Nets: 773
+The number of swaps that will be performed per each Temperature is: 11631
+The total cost of all nets after initial random placement is: 38749
+The starting temperature is: 404.877
+The total cost of all nets after final placement is: 16844
+After 1589 Temperature Iterations!
+Processing e64.txt file..
+./Assignment2.exe e64.txt 3 0
+
+Number of Cells: 403
+Num Nets: 338
+The number of swaps that will be performed per each Temperature is: 3105
+The total cost of all nets after initial random placement is: 11493
+The starting temperature is: 228.464
+The total cost of all nets after final placement is: 5433
+After 1503 Temperature Iterations!
+Processing paira.txt file..
+./Assignment2.exe paira.txt 3 0
+
+Number of Cells: 951
+Num Nets: 814
+The number of swaps that will be performed per each Temperature is: 12751
+The total cost of all nets after initial random placement is: 44303
+The starting temperature is: 418.393
+The total cost of all nets after final placement is: 17929
+After 1570 Temperature Iterations!
+Processing pairb.txt file..
+./Assignment2.exe pairb.txt 3 0
+
+Number of Cells: 951
+Num Nets: 814
+The number of swaps that will be performed per each Temperature is: 53140
+The total cost of all nets after initial random placement is: 75098
+The starting temperature is: 683.781
+The total cost of all nets after final placement is: 17771
+After 1488 Temperature Iterations!

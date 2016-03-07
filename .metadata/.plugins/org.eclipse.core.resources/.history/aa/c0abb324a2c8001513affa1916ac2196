@@ -1,0 +1,80 @@
+/*
+ * Assignment2.cpp
+ *
+ *  Created on: Jan 31, 2016
+ *      Author: km
+ */
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+#include <vector>
+#include <unistd.h>
+#include "graphics.h"
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include "Assignment2.hpp"
+using namespace std;
+
+vector<vector<int> > sNetFile;
+string sFileName;
+
+int ParseNetfile()
+{
+    ifstream infile;
+    infile.open(sFileName.c_str());
+    int lineNumber = 0;
+
+    std::string line;
+
+    if(!infile.is_open())
+    {
+        return 0;
+    }
+
+    if( getline(infile, line) )
+    {
+        istringstream lineStream(line);
+        lineStream >> sNetfile.x >> sNetfile.y;
+    } else return 0;
+
+    if( getline(infile, line) )
+    {
+        istringstream lineStream(line);
+        lineStream >> sNetfile.numCells;
+    } else return 0;
+
+    sNetfile.Cells = new Point[sNetfile.numCells];
+
+    for(int i = 0; i < sNetfile.numCells; i++)
+    {
+        if( getline(infile, line) )
+        {
+            istringstream lineStream(line);
+            lineStream >> sNetfile.Cells[i].x >> sNetfile.Cells[i].y;
+        } else return 0;
+    }
+
+    if( getline(infile, line) )
+    {
+        istringstream lineStream(line);
+        lineStream >> sNetfile.numWires;
+    } else return 0;
+
+    sNetfile.Wires = new Wire[sNetfile.numWires];
+    for(int i = 0; i < sNetfile.numWires; i++)
+    {
+        if( getline(infile, line) )
+        {
+            istringstream lineStream(line);
+            lineStream >> sNetfile.Wires[i].numContacts;
+            sNetfile.Wires[i].Contacts = new Point[sNetfile.Wires[i].numContacts];
+
+            for(int j = 0; j < sNetfile.Wires[i].numContacts; j++)
+            {
+                lineStream >> sNetfile.Wires[i].Contacts[j].x >> sNetfile.Wires[i].Contacts[j].y;
+            }
+        } else return 0;
+    }
+    //cout << "Netfile parsing complete\n";
+}
