@@ -20,7 +20,8 @@
 using namespace std;
 
 // KL data
-
+bool sIsMultiEdge = false;
+bool sDrawLines = true;
 // end KL data
 
 
@@ -92,9 +93,16 @@ bool ParseNetFile()
 	vNetFile.erase(vNetFile.begin());
 
 	//Now remove the first item from each line, forgot to do this for annealing!
-	for(auto &line : vNetFile)
+	for(int i = 0; i < vNetFile.size(); i++)
 	{
-		line.erase(line.begin());
+		if(vNetFile[i].size() > 0)
+		{
+			vNetFile[i].erase(vNetFile[i].begin());
+		}
+		else
+		{
+			vNetFile.erase(vNetFile.begin() + i);
+		}
 	}
 
 	cout << "\nNumber of Cells: " << sNumCells << "\nNum Nets: " << sNumConnection << endl;
@@ -112,8 +120,14 @@ void DrawGrid()
 	int boxSize;
 
 	setlinestyle (SOLID);
-	setlinewidth (1);
+	setlinewidth (3);
+	setcolor (RED);
+
+	float y = (sBoxDim * float(sNumRows))  + TOP_BORDER - sBoxDim/2.f;
+	drawline (-500, y, 1500, y);
+
 	setcolor (BLACK);
+	setlinewidth (1);
 
 	for(int i = 0; i < sNumColumns; i++)
 	{
@@ -140,8 +154,8 @@ void setTextFill(Point p, string text, int color)
 	//I think this is the top left, so need to offset it to the centre. And also make sure the font size is suitable.
 	Vertice v = GetLocationToDraw(p);
 
-	float font_height = sBoxDim/2;
-	float offset = sWidthStretchForText*sBoxDim/2 - LEFT_EDGE;
+	float font_height = sBoxDim/2.f;
+	float offset = sWidthStretchForText*sBoxDim/2.f - LEFT_EDGE;
     setcolor(color);
     drawtext(v.x + offset, v.y + font_height, const_cast<char*>(text.c_str()), 100);
     //flushinput();
@@ -173,7 +187,7 @@ void ColourRect(Point x)
 	setcolor (BLACK);
 
 	Vertice v = GetLocationToDraw(x);
-	float offset = sBoxDim/2;
+	float offset = sBoxDim/2.f;
 	drawrect (v.x- LEFT_EDGE, v.y, v.x + sBoxDim*sWidthStretchForText - LEFT_EDGE, v.y + sBoxDim);
 }
 
@@ -650,19 +664,19 @@ int mainKL(int argc, char *argv[])
     if(argc < 2 || argc > 3)
     {
         cout << "bad arguments. usage: assignment3.exe [filename] [display mode]\nie. assignment3.exe hello.net\n\n";
-        cout << "Display mode 0 = normal, display mode 1 = no display\n";
+        cout << "Display mode 0 = normal, 1 = no lines, 2 = no display at all\n";
         return 0;
     }
 
     sFileName = string(argv[1]);
     int mode = 0;
 
-    if(argc == 2)
+    if(argc == 3)
     {
     	mode = atoi(argv[2]);
     }
     //cout << "the mode: " << mode << endl;
-    if(mode < 0 || mode > 1)
+    if(mode < 0 || mode > 2)
     {
         cout << "incorrect mode!\n";
         return 0;
@@ -672,10 +686,15 @@ int mainKL(int argc, char *argv[])
         if(mode == 0)
         {
         	sfinalAnimation = true;
+        	sDrawLines = true;
         }
         else if(mode == 1)
         {
-        	//do nothing.
+        	sDrawLines = false;
+        }
+        else if(mode == 2)
+        {
+           	//do nothing.
         	sfinalAnimation = false;
         }
     }
@@ -694,10 +713,92 @@ int mainKL(int argc, char *argv[])
 	return 1;
 }
 
-bool multiEdge = true;
-vector<int> calculateAllGains(vector<int> &vSides)
+void updateGainsForConnectedNets(int cell, vector<float> &gains, vector<int> &vSides)
 {
-	vector<int> gains;
+	for(auto net : sCells[cell].Nets)
+	{
+		updateGainForNet(net, gains, vSides);
+	}
+}
+
+void updateGainForNet(int net, vector<float> &gains, vector<int> &vSides)
+{
+	for(int i = 0; i < vNetFile[net].size(); i++)
+	{
+		int cell = vNetFile[net][i];
+		gains[cell] = calculateGainForCell(cell, vSides);
+	}
+}
+
+float calculateGainForCell(int iCell, vector<int> &vSides)
+{
+	Cell cell = sCells[iCell];
+	float gain = 0;
+	for(auto net : cell.Nets)
+	{
+		// For each cell in the net, need to see if it is on opposite side.
+		// But don't include self. Problem is that node can be in multiple nets?
+		if(sIsMultiEdge)
+		{
+			for(auto cellIndex : vNetFile[net])
+			{
+				if(cellIndex != iCell)
+				{
+					if(DoesCrossBarrier(vSides, iCell, cellIndex))
+					{
+						--gain;
+					}
+					else
+					{
+						++gain;
+					}
+				}
+			}
+		}
+		else
+		{
+			bool doesCross = false;
+			int numOnSameSide = 0;
+
+			for(auto cellIndex : vNetFile[net])
+			{
+				if(cellIndex != iCell)
+				{
+					if(DoesCrossBarrier(vSides, iCell, cellIndex))
+					{
+						doesCross = true;
+					}
+					else
+					{
+						numOnSameSide++;
+						//doesCross = false;
+					}
+				}
+			}
+			if(doesCross)
+			{
+				float keyCellBias = 0;
+
+				// If it is the only net on that one side, then it is critical! So add a bias!
+				if(numOnSameSide == 0)
+				{
+					keyCellBias = 1.855f;
+				}
+				gain = gain + 1.f + keyCellBias;
+			}
+			else
+			{
+				gain = gain - 1.f;
+			}
+		}
+
+	}
+	return gain;
+}
+
+vector<float> calculateAllGains(vector<int> &vSides)
+{
+	vector<float> gains;
 	for(auto x : sCells)
 	{
 		gains.push_back(-1);
@@ -706,64 +807,9 @@ vector<int> calculateAllGains(vector<int> &vSides)
 	// For all cells.
 	for(int i = 0; i < sCells.size(); i++)
 	{
-		Cell cell = sCells[i];
-		int gain = 0;
-		for(auto net : cell.Nets)
-		{
-			// For each cell in the net, need to see if it is on opposite side.
-			// But don't include self. Problem is that node can be in multiple nets?
-			if(multiEdge)
-			{
-				for(auto cellIndex : vNetFile[net])
-				{
-					if(cellIndex != i)
-					{
-						if(DoesCrossBarrier(vSides, i, cellIndex))
-						{
-							--gain;
-						}
-						else
-						{
-							++gain;
-						}
-					}
-				}
-			}
-			else
-			{
-				bool doesCross = false;
-				for(auto cellIndex : vNetFile[net])
-				{
-					if(cellIndex != i)
-					{
-						if(DoesCrossBarrier(vSides, i, cellIndex))
-						{
-							doesCross = true;
-						}
-						else
-						{
-							doesCross = false;
-						}
-					}
-				}
-				if(doesCross)
-				{
-					gain++;
-				}
-				else
-				{
-					gain--;
-				}
-			}
-
-		}
-		gains[i] = gain;
+		gains[i] = calculateGainForCell(i, vSides);
 	}
 
-	for(auto x : gains)
-	{
-		//cout << "Gains: " << x << endl;
-	}
 	return gains;
 }
 
@@ -824,7 +870,7 @@ void doSingleKL(vector<int> &vSides)
 		sides[ReturnSide(vSidesBackup, i)]++;
 	}
 
-	vector<int> gains = calculateAllGains(vSidesBackup);
+	vector<float> gains = calculateAllGains(vSidesBackup);
 	vector<int> unlocked;
 	for(int i = 0; i < sCells.size(); i++)
 	{
@@ -884,6 +930,8 @@ void doSingleKL(vector<int> &vSides)
 		side = vSidesBackup[bestCell];
 		sides[side]++;
 
+		//updateGainsForConnectedNets(bestCell, gains, vSidesBackup);
+
 		// Now lock that node by removing it from the list of unlocked nodes.
 		unlocked.erase(unlocked.begin() + bestIndex);
 
@@ -898,7 +946,7 @@ void doSingleKL(vector<int> &vSides)
 
 		currentIteration++;
 	}
-	cout << "After Cut:\t\t" << bestCut << endl;
+	cout << ":\t\t\t\t" << bestCut << endl;
 
 	// Now take the best iteration and do all the transformations up  until there
 	for(int i = 0; i < bestCutIteration + 1; i++)
@@ -929,25 +977,24 @@ void doKL()
 		}
 	}
 
-	std::srand(0);
-	random_shuffle(vSides.begin(),vSides.end());
-
 	InitKL();
-
-	int currentCut = KLCostFunction(vSides);
-	cout << "Cost of partition after initial random placement: " << currentCut << endl;
-
 	DrawGrid();
 	InitBoardKL(vSides);
 
+	std::srand(0);
+	random_shuffle(vSides.begin(),vSides.end());
+
+	int currentCut = KLCostFunction(vSides);
+	cout << "\nCut after initial\nrandom placement:\t\t" << currentCut << endl;
+
 	InitialPartition(vSides);
 
-
 	currentCut = KLCostFunction(vSides);
-	cout << "Cost of partition after placing cells connected to many nets on one side, and vice versa: " << currentCut << endl;
+	cout << "Cut after placing cells\nconnected to many nets\non one side, and vice versa:\t" << currentCut << endl << endl;
 
 	for(int i = 0; i < 6; i++)
 	{
+		cout << "KL " << i;
 		//do KL
 		doSingleKL(vSides);
 	}
@@ -957,6 +1004,7 @@ void doKL()
 		clearscreen();
 		InitBoardKL(vSides);
 		DrawGrid();
+		DrawLines(vSides);
 		while(true) {Delay(1000);}
 	}
 }
@@ -981,7 +1029,7 @@ void InitialPartition(vector<int> &vSides)
 {
 	// Partition all the cells with most connections on one side
 	// and put the cells with the least connections on the other side.
-	int half = sCells.size()/2;
+	int half = sNumCells/2;
 	vector<int> tempCells;
 	for(int i = 0; i < sNumCells; i++)
 	{
@@ -1013,6 +1061,38 @@ void InitialPartition(vector<int> &vSides)
 		}
 		tempCells.erase(tempCells.begin() + indexOfBiggest);
 		placed++;
+	}
+}
+
+void DrawLines(vector<int> &vSides)
+{
+	float font_height = sBoxDim/2.f;
+	float offset = sWidthStretchForText*sBoxDim/2.f - LEFT_EDGE;
+
+
+	if(sDrawLines)
+	{
+		for(auto net : vNetFile)
+		{
+			int cell1 = net[0];
+			for(int i = 1; i < net.size(); i++)
+			{
+				if(DoesCrossBarrier(vSides, cell1, net[i]))
+				{
+					// Draw a line between.
+					setlinestyle (SOLID);
+					setlinewidth (1);
+					setcolor (GREEN);
+
+					Vertice v1 = GetLocationToDraw(sCells[cell1].p);
+					Vertice v2 = GetLocationToDraw(sCells[net[i]].p);
+					drawline (v1.x + offset, v1.y, v2.x + offset, v2.y);
+					flushinput();
+					break;
+
+				}
+			}
+		}
 	}
 }
 

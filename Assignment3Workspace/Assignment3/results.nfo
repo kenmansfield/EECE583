@@ -1,0 +1,216 @@
+Processing alu2.txt file..
+./Assignment3.exe alu2.txt 1
+
+Number of Cells: 213
+Num Nets: 207
+
+Cut after initial
+random placement:		126
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	121
+
+KL 0:				88
+KL 1:				65
+KL 2:				58
+KL 3:				56
+KL 4:				53
+KL 5:				53
+Processing apex1.txt file..
+./Assignment3.exe apex1.txt 1
+
+Number of Cells: 786
+Num Nets: 741
+
+Cut after initial
+random placement:		497
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	500
+
+KL 0:				377
+KL 1:				327
+KL 2:				292
+KL 3:				266
+KL 4:				261
+KL 5:				255
+Processing apex4.txt file..
+./Assignment3.exe apex4.txt 1
+
+Number of Cells: 1290
+Num Nets: 1271
+
+Cut after initial
+random placement:		800
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	785
+
+KL 0:				611
+KL 1:				511
+KL 2:				403
+KL 3:				380
+KL 4:				359
+KL 5:				346
+Processing C880.txt file..
+./Assignment3.exe C880.txt 1
+
+Number of Cells: 260
+Num Nets: 234
+
+Cut after initial
+random placement:		153
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	163
+
+KL 0:				117
+KL 1:				88
+KL 2:				81
+KL 3:				80
+KL 4:				79
+KL 5:				76
+Processing cm138a.txt file..
+./Assignment3.exe cm138a.txt 1
+
+Number of Cells: 24
+Num Nets: 16
+
+Cut after initial
+random placement:		12
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	12
+
+KL 0:				7
+KL 1:				4
+KL 2:				4
+KL 3:				4
+KL 4:				4
+KL 5:				4
+Processing cm150a.txt file..
+./Assignment3.exe cm150a.txt 1
+
+Number of Cells: 36
+Num Nets: 35
+
+Cut after initial
+random placement:		26
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	16
+
+KL 0:				12
+KL 1:				12
+KL 2:				12
+KL 3:				12
+KL 4:				12
+KL 5:				12
+Processing cm151a.txt file..
+./Assignment3.exe cm151a.txt 1
+
+Number of Cells: 22
+Num Nets: 20
+
+Cut after initial
+random placement:		14
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	13
+
+KL 0:				10
+KL 1:				8
+KL 2:				7
+KL 3:				7
+KL 4:				7
+KL 5:				7
+Processing cm162a.txt file..
+./Assignment3.exe cm162a.txt 1
+
+Number of Cells: 37
+Num Nets: 32
+
+Cut after initial
+random placement:		22
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	23
+
+KL 0:				17
+KL 1:				16
+KL 2:				16
+KL 3:				16
+KL 4:				16
+KL 5:				16
+Processing cps.txt file..
+./Assignment3.exe cps.txt 1
+
+Number of Cells: 882
+Num Nets: 773
+
+Cut after initial
+random placement:		468
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	484
+
+KL 0:				362
+KL 1:				266
+KL 2:				238
+KL 3:				224
+KL 4:				221
+KL 5:				217
+Processing e64.txt file..
+./Assignment3.exe e64.txt 1
+
+Number of Cells: 403
+Num Nets: 338
+
+Cut after initial
+random placement:		242
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	229
+
+KL 0:				174
+KL 1:				151
+KL 2:				140
+KL 3:				133
+KL 4:				129
+KL 5:				128
+Processing paira.txt file..
+./Assignment3.exe paira.txt 1
+
+Number of Cells: 951
+Num Nets: 814
+
+Cut after initial
+random placement:		521
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	514
+
+KL 0:				395
+KL 1:				339
+KL 2:				309
+KL 3:				300
+KL 4:				297
+KL 5:				292
+Processing pairb.txt file..
+./Assignment3.exe pairb.txt 1
+
+Number of Cells: 951
+Num Nets: 814
+
+Cut after initial
+random placement:		521
+Cut after placing cells
+connected to many nets
+on one side, and vice versa:	514
+
+KL 0:				395
+KL 1:				339
+KL 2:				309
+KL 3:				300
+KL 4:				297
+KL 5:				292

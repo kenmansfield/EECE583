@@ -21,6 +21,7 @@ using namespace std;
 
 // KL data
 bool sIsMultiEdge = false;
+bool sDrawLines = true;
 // end KL data
 
 
@@ -121,7 +122,6 @@ void DrawGrid()
 	setlinestyle (SOLID);
 	setlinewidth (3);
 	setcolor (RED);
-
 
 	float y = (sBoxDim * float(sNumRows))  + TOP_BORDER - sBoxDim/2.f;
 	drawline (-500, y, 1500, y);
@@ -664,7 +664,7 @@ int mainKL(int argc, char *argv[])
     if(argc < 2 || argc > 3)
     {
         cout << "bad arguments. usage: assignment3.exe [filename] [display mode]\nie. assignment3.exe hello.net\n\n";
-        cout << "Display mode 0 = normal, display mode 1 = no display\n";
+        cout << "Display mode 0 = normal, 1 = no lines, 2 = no display at all\n";
         return 0;
     }
 
@@ -676,7 +676,7 @@ int mainKL(int argc, char *argv[])
     	mode = atoi(argv[2]);
     }
     //cout << "the mode: " << mode << endl;
-    if(mode < 0 || mode > 1)
+    if(mode < 0 || mode > 2)
     {
         cout << "incorrect mode!\n";
         return 0;
@@ -686,10 +686,16 @@ int mainKL(int argc, char *argv[])
         if(mode == 0)
         {
         	sfinalAnimation = true;
+        	sDrawLines = true;
         }
         else if(mode == 1)
         {
-        	//do nothing.
+        	sDrawLines = false;
+        }
+        else if(mode == 2)
+        {
+           	//do nothing.
+	       	sDrawLines = false;
         	sfinalAnimation = false;
         }
     }
@@ -772,14 +778,14 @@ float calculateGainForCell(int iCell, vector<int> &vSides)
 			}
 			if(doesCross)
 			{
-				float criticalNetBias = 0;
+				float keyCellBias = 0;
 
 				// If it is the only net on that one side, then it is critical! So add a bias!
 				if(numOnSameSide == 0)
 				{
-					criticalNetBias = 1.855f;
+					keyCellBias = 1.855f;
 				}
-				gain = gain + 1.f + criticalNetBias;
+				gain = gain + 1.f + keyCellBias;
 			}
 			else
 			{
@@ -943,18 +949,19 @@ void doSingleKL(vector<int> &vSides)
 	}
 	cout << ":\t\t\t\t" << bestCut << endl;
 
+	if(sfinalAnimation)
+	{
+		char buff[50];
+		sprintf(buff, "K&L Cut = %i", bestCut);
+		update_message(buff);
+	}
+
 	// Now take the best iteration and do all the transformations up  until there
 	for(int i = 0; i < bestCutIteration + 1; i++)
 	{
 		//do swaps, then return.
 		DoKLSwap(vSides, vSwaps[i]);
 	}
-
-	/*for(auto gain : gains)
-	{
-		cout << gain << " ";
-	}*/
-	//cout << endl;
 }
 
 void DoKLSwap(vector<int> &vSides, int cellToSwap)
@@ -1005,6 +1012,7 @@ void doKL()
 		clearscreen();
 		InitBoardKL(vSides);
 		DrawGrid();
+		DrawLines(vSides);
 		while(true) {Delay(1000);}
 	}
 }
@@ -1061,6 +1069,38 @@ void InitialPartition(vector<int> &vSides)
 		}
 		tempCells.erase(tempCells.begin() + indexOfBiggest);
 		placed++;
+	}
+}
+
+void DrawLines(vector<int> &vSides)
+{
+	float font_height = sBoxDim/2.f;
+	float offset = sWidthStretchForText*sBoxDim/2.f - LEFT_EDGE;
+
+
+	if(sDrawLines)
+	{
+		for(auto net : vNetFile)
+		{
+			int cell1 = net[0];
+			for(int i = 1; i < net.size(); i++)
+			{
+				if(DoesCrossBarrier(vSides, cell1, net[i]))
+				{
+					// Draw a line between.
+					setlinestyle (SOLID);
+					setlinewidth (1);
+					setcolor (GREEN);
+
+					Vertice v1 = GetLocationToDraw(sCells[cell1].p);
+					Vertice v2 = GetLocationToDraw(sCells[net[i]].p);
+					drawline (v1.x + offset, v1.y, v2.x + offset, v2.y);
+					flushinput();
+					break;
+
+				}
+			}
+		}
 	}
 }
 

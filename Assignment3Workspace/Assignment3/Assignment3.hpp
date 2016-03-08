@@ -76,5 +76,6 @@ void InitialPartition(vector<int> &vSides);
 float calculateGainForCell(int iCell, vector<int> &vSides);
 void updateGainsForConnectedNets(int cell, vector<float> &gains, vector<int> &vSides);
 void updateGainForNet(int net, vector<float> &gains, vector<int> &vSides);
+void DrawLines(vector<int> &vSides);
 
 #endif /* ASSIGNMENT3_HPP_ */
