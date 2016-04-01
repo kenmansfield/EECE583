@@ -1,8 +1,0 @@
-13:27:28 **** Incremental Build of configuration Debug for project Assignment3 ****
-make all 
-g++ -c -g -Wno-write-strings -std=c++0x -I/usr/openwin/include graphics.c
-g++ -c -g -Wno-write-strings -std=c++0x Assignment3.cpp
-g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
-
-13:27:30 Build Finished (took 1s.795ms)
-
