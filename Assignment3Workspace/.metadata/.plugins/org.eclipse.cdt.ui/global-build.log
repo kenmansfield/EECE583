@@ -1401,3 +1401,74 @@ g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.ex
 make all 
 g++ -c -O2 -Wno-write-strings -std=c++0x Assignment3.cpp
 g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:14:56 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:18:38 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:19:14 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:25:14 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:25:23 **** Clean-only build of configuration Default for project Assignment3 ****
+make clean 
+rm *.o *.exe
+20:25:26 **** Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -g -Wno-write-strings -std=c++0x -I/usr/openwin/include graphics.c
+g++ -c -g -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:25:28 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:27:32 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -g -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:28:01 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -g -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:28:24 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:39:02 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -g -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:40:09 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:54:15 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:55:04 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -O2 -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:55:12 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -O2 -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:55:20 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -O2 -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:55:43 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -O2 -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:55:53 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -O2 -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+20:58:42 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -O2 -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm
+13:12:13 **** Incremental Build of configuration Default for project Assignment3 ****
+make all 
+g++ -c -O2 -Wno-write-strings -std=c++0x Assignment3.cpp
+g++ -O2 -Wno-write-strings -std=c++0x graphics.o Assignment3.o  -o Assignment3.exe -L/usr/openwin/lib -lX11 -lm

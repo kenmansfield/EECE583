@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="303" key="DIALOG_WIDTH"/>
 		<item value="181" key="DIALOG_Y_ORIGIN"/>
-		<item value="1247" key="DIALOG_X_ORIGIN"/>
 		<item value="400" key="DIALOG_HEIGHT"/>
+		<item value="1247" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Droid Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="sprintf" key="selection"/>
+		<item value="6" key="selection"/>
 		<list key="findhistory">
+			<item value="6"/>
+			<item value="1.855"/>
+			<item value="1.8"/>
+			<item value="updateGainsForConnectedNets"/>
 			<item value="sprintf"/>
 			<item value="update_message"/>
 			<item value="cut"/>
 			<item value="kl cut"/>
-			<item value="kl"/>
-			<item value="message"/>
-			<item value="cutsize"/>
-			<item value="InitBoardKL"/>
 		</list>
 		<list key="replacehistory">
 		</list>

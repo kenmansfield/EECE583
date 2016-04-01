@@ -1,5 +1,5 @@
 /*
- * Assignment2.cpp
+ * main.cpp
  *
  *  Created on: Jan 31, 2016
  *      Author: km
@@ -15,19 +15,10 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
-#include "Assignment3.hpp"
+#include "main.hpp"
+#include "Genetic.hpp"
 
 using namespace std;
-
-// KL data
-bool sIsMultiEdge = false;
-bool sDrawLines = true;
-// end KL data
-
-
-vector<Cell> sCells;
-int ** sBoard = NULL;
-vector< vector<int> > vNetFile;
 
 float sBoxDim = 0;
 static const int WIDTH = 1000;
@@ -35,18 +26,25 @@ const int LEFT_EDGE = 80;
 float TOP_BORDER = 60;
 float sWidthStretchForText = 1.5;
 
-int sNumCells = 0;
-int sNumConnection = 0;
-int sNumRows = 0;
-int sNumColumns = 0;
+bool sIsMultiEdge;
+bool sDrawLines;
 
-//These are modifiers based on the different modes selected by the user.
-static float sDelayModifier = 1.0f;
-static bool sNoAnimation = false;
-static bool sfinalAnimation = true;
-static bool sDoFastAnneal = false;
+vector<Cell> sCells;
+int ** sBoard;
+vector< vector<int> > vNetFile;
 
-static string sFileName = "";
+int sNumCells;
+int sNumConnection;
+int sNumRows;
+int sNumColumns;
+
+
+//global variables;
+float sDelayModifier;
+bool sNoAnimation;
+bool sfinalAnimation;
+bool sDoFastAnneal;
+string sFileName;
 
 bool ReadNetFile(string fileName)
 {
@@ -654,8 +652,26 @@ int mainAnneal(int argc, char *argv[])
 
 int main (int argc, char *argv[])
 {
-	mainKL(argc, argv);
+	//These are modifiers based on the different modes selected by the user.
+	sDelayModifier = 1.0f;
+	sNoAnimation = false;
+	sfinalAnimation = true;
+	sDoFastAnneal = false;
+	sFileName = "";
+	sBoard = NULL;
+	sNumCells = 0;
+	sNumConnection = 0;
+	sNumRows = 0;
+	sNumColumns = 0;
+
+	// KL data
+	sIsMultiEdge = false;
+	sDrawLines = true;
+	// end KL data
+
+	//mainKL(argc, argv);
 	//mainAnneal(argc, argv);
+	mainGenetic(argc, argv);
 }
 
 // Assignment 3 KL code!
