@@ -28,7 +28,7 @@ X11_INCLUDE = -I/usr/openwin/include
 # respectively are listed below.
 
 #FLAGS = -Wall -Wpointer-arith -Wcast-qual -Wstrict-prototypes -O -D__USE_FIXED_PROTOTYPES__ -ansi -pedantic -Wmissing-prototypes -Wshadow -Wcast-align -D_POSIX_SOURCE
-FLAGS = -g -Wno-write-strings -std=c++0x
+FLAGS = -O3 -Wno-write-strings -std=c++0x
 #FLAGS = -O2
 
 EXE = project.exe

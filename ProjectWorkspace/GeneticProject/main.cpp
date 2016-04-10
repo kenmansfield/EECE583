@@ -648,6 +648,7 @@ int mainAnneal(int argc, char *argv[])
 	{
 		while(true) {Delay(1000);}
 	}
+	return 0;
 }
 
 int main (int argc, char *argv[])
@@ -963,7 +964,7 @@ void doSingleKL(vector<int> &vSides)
 
 		currentIteration++;
 	}
-	cout << ":\t\t\t\t" << bestCut << endl;
+	//cout << ":\t\t\t\t" << bestCut << endl;
 
 	if(sfinalAnimation)
 	{
@@ -1018,7 +1019,7 @@ void doKL()
 
 	for(int i = 0; i < 6; i++)
 	{
-		cout << "KL " << i;
+		//cout << "KL " << i;
 		//do KL
 		doSingleKL(vSides);
 	}

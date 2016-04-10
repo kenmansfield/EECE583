@@ -1,0 +1,480 @@
+Processing netlists/alu2.txt file..
+project.exe netlists/alu2.txt 2 0 0
+
+Number of Cells: 213
+Num Nets: 207
+best: 45
+
+real	0m0.131s
+user	0m0.124s
+sys	0m0.000s
+Processing netlists/apex1.txt file..
+project.exe netlists/apex1.txt 2 0 0
+
+Number of Cells: 786
+Num Nets: 741
+best: 195
+
+real	0m3.019s
+user	0m3.016s
+sys	0m0.000s
+Processing netlists/apex4.txt file..
+project.exe netlists/apex4.txt 2 0 0
+
+Number of Cells: 1290
+Num Nets: 1271
+best: 284
+
+real	0m9.944s
+user	0m9.932s
+sys	0m0.004s
+Processing netlists/C880.txt file..
+project.exe netlists/C880.txt 2 0 0
+
+Number of Cells: 260
+Num Nets: 234
+best: 57
+
+real	0m0.213s
+user	0m0.212s
+sys	0m0.000s
+Processing netlists/cm138a.txt file..
+project.exe netlists/cm138a.txt 2 0 0
+
+Number of Cells: 24
+Num Nets: 16
+best: 4
+
+real	0m0.020s
+user	0m0.016s
+sys	0m0.000s
+Processing netlists/cm150a.txt file..
+project.exe netlists/cm150a.txt 2 0 0
+
+Number of Cells: 36
+Num Nets: 35
+best: 6
+
+real	0m0.021s
+user	0m0.020s
+sys	0m0.000s
+Processing netlists/cm151a.txt file..
+project.exe netlists/cm151a.txt 2 0 0
+
+Number of Cells: 22
+Num Nets: 20
+best: 4
+
+real	0m0.020s
+user	0m0.020s
+sys	0m0.000s
+Processing netlists/cm162a.txt file..
+project.exe netlists/cm162a.txt 2 0 0
+
+Number of Cells: 37
+Num Nets: 32
+best: 6
+
+real	0m0.023s
+user	0m0.020s
+sys	0m0.000s
+Processing netlists/cps.txt file..
+project.exe netlists/cps.txt 2 0 0
+
+Number of Cells: 882
+Num Nets: 773
+best: 145
+
+real	0m3.269s
+user	0m3.264s
+sys	0m0.000s
+Processing netlists/e64.txt file..
+project.exe netlists/e64.txt 2 0 0
+
+Number of Cells: 403
+Num Nets: 338
+best: 78
+
+real	0m0.410s
+user	0m0.388s
+sys	0m0.000s
+Processing netlists/paira.txt file..
+project.exe netlists/paira.txt 2 0 0
+
+Number of Cells: 951
+Num Nets: 814
+best: 167
+
+real	0m5.162s
+user	0m5.152s
+sys	0m0.004s
+Processing netlists/pairb.txt file..
+project.exe netlists/pairb.txt 2 0 0
+
+Number of Cells: 951
+Num Nets: 814
+best: 167
+
+real	0m5.187s
+user	0m5.168s
+sys	0m0.000s
+Processing netlists/alu2.txt file..
+project.exe netlists/alu2.txt 2 0 1
+
+Number of Cells: 213
+Num Nets: 207
+best: 24
+
+real	0m3.300s
+user	0m3.296s
+sys	0m0.000s
+Processing netlists/apex1.txt file..
+project.exe netlists/apex1.txt 2 0 1
+
+Number of Cells: 786
+Num Nets: 741
+best: 111
+
+real	0m47.920s
+user	0m47.884s
+sys	0m0.000s
+Processing netlists/apex4.txt file..
+project.exe netlists/apex4.txt 2 0 1
+
+Number of Cells: 1290
+Num Nets: 1271
+best: 141
+
+real	7m13.695s
+user	7m13.388s
+sys	0m0.020s
+Processing netlists/C880.txt file..
+project.exe netlists/C880.txt 2 0 1
+
+Number of Cells: 260
+Num Nets: 234
+best: 28
+
+real	0m1.072s
+user	0m1.068s
+sys	0m0.000s
+Processing netlists/cm138a.txt file..
+project.exe netlists/cm138a.txt 2 0 1
+
+Number of Cells: 24
+Num Nets: 16
+best: 4
+
+real	0m0.039s
+user	0m0.036s
+sys	0m0.000s
+Processing netlists/cm150a.txt file..
+project.exe netlists/cm150a.txt 2 0 1
+
+Number of Cells: 36
+Num Nets: 35
+best: 6
+
+real	0m0.040s
+user	0m0.036s
+sys	0m0.000s
+Processing netlists/cm151a.txt file..
+project.exe netlists/cm151a.txt 2 0 1
+
+Number of Cells: 22
+Num Nets: 20
+best: 4
+
+real	0m0.009s
+user	0m0.008s
+sys	0m0.004s
+Processing netlists/cm162a.txt file..
+project.exe netlists/cm162a.txt 2 0 1
+
+Number of Cells: 37
+Num Nets: 32
+best: 5
+
+real	0m0.046s
+user	0m0.044s
+sys	0m0.000s
+Processing netlists/cps.txt file..
+project.exe netlists/cps.txt 2 0 1
+
+Number of Cells: 882
+Num Nets: 773
+best: 101
+
+real	6m8.810s
+user	6m8.556s
+sys	0m0.044s
+Processing netlists/e64.txt file..
+project.exe netlists/e64.txt 2 0 1
+
+Number of Cells: 403
+Num Nets: 338
+best: 47
+
+real	0m3.934s
+user	0m3.928s
+sys	0m0.000s
+Processing netlists/paira.txt file..
+project.exe netlists/paira.txt 2 0 1
+
+Number of Cells: 951
+Num Nets: 814
+best: 1
+
+real	0m20.258s
+user	0m20.244s
+sys	0m0.000s
+Processing netlists/pairb.txt file..
+project.exe netlists/pairb.txt 2 0 1
+
+Number of Cells: 951
+Num Nets: 814
+best: 1
+
+real	0m20.269s
+user	0m20.248s
+sys	0m0.000s
+Processing netlists/alu2.txt file..
+project.exe netlists/alu2.txt 2 1 0
+
+Number of Cells: 213
+Num Nets: 207
+Done, best cut: 44
+
+real	0m8.529s
+user	0m8.524s
+sys	0m0.000s
+Processing netlists/apex1.txt file..
+project.exe netlists/apex1.txt 2 1 0
+
+Number of Cells: 786
+Num Nets: 741
+Done, best cut: 198
+
+real	0m29.468s
+user	0m29.376s
+sys	0m0.064s
+Processing netlists/apex4.txt file..
+project.exe netlists/apex4.txt 2 1 0
+
+Number of Cells: 1290
+Num Nets: 1271
+Done, best cut: 243
+
+real	0m48.222s
+user	0m46.540s
+sys	0m1.652s
+Processing netlists/C880.txt file..
+project.exe netlists/C880.txt 2 1 0
+
+Number of Cells: 260
+Num Nets: 234
+Done, best cut: 58
+
+real	0m10.699s
+user	0m10.692s
+sys	0m0.000s
+Processing netlists/cm138a.txt file..
+project.exe netlists/cm138a.txt 2 1 0
+
+Number of Cells: 24
+Num Nets: 16
+Done, best cut: 4
+
+real	0m2.081s
+user	0m2.080s
+sys	0m0.000s
+Processing netlists/cm150a.txt file..
+project.exe netlists/cm150a.txt 2 1 0
+
+Number of Cells: 36
+Num Nets: 35
+Done, best cut: 7
+
+real	0m2.776s
+user	0m2.772s
+sys	0m0.000s
+Processing netlists/cm151a.txt file..
+project.exe netlists/cm151a.txt 2 1 0
+
+Number of Cells: 22
+Num Nets: 20
+Done, best cut: 4
+
+real	0m2.100s
+user	0m2.096s
+sys	0m0.000s
+Processing netlists/cm162a.txt file..
+project.exe netlists/cm162a.txt 2 1 0
+
+Number of Cells: 37
+Num Nets: 32
+Done, best cut: 5
+
+real	0m2.886s
+user	0m2.884s
+sys	0m0.000s
+Processing netlists/cps.txt file..
+project.exe netlists/cps.txt 2 1 0
+
+Number of Cells: 882
+Num Nets: 773
+Done, best cut: 168
+
+real	0m31.769s
+user	0m31.128s
+sys	0m0.620s
+Processing netlists/e64.txt file..
+project.exe netlists/e64.txt 2 1 0
+
+Number of Cells: 403
+Num Nets: 338
+Done, best cut: 72
+
+real	0m15.046s
+user	0m15.036s
+sys	0m0.000s
+Processing netlists/paira.txt file..
+project.exe netlists/paira.txt 2 1 0
+
+Number of Cells: 951
+Num Nets: 814
+Done, best cut: 199
+
+real	0m33.665s
+user	0m32.820s
+sys	0m0.824s
+Processing netlists/pairb.txt file..
+project.exe netlists/pairb.txt 2 1 0
+
+Number of Cells: 951
+Num Nets: 814
+Done, best cut: 183
+
+real	0m33.919s
+user	0m33.816s
+sys	0m0.084s
+Processing netlists/alu2.txt file..
+project.exe netlists/alu2.txt 2 1 1
+
+Number of Cells: 213
+Num Nets: 207
+Done, best cut: 24
+
+real	1m28.798s
+user	1m28.728s
+sys	0m0.020s
+Processing netlists/apex1.txt file..
+project.exe netlists/apex1.txt 2 1 1
+
+Number of Cells: 786
+Num Nets: 741
+Done, best cut: 114
+
+real	5m37.821s
+user	5m37.536s
+sys	0m0.044s
+Processing netlists/apex4.txt file..
+project.exe netlists/apex4.txt 2 1 1
+
+Number of Cells: 1290
+Num Nets: 1271
+Done, best cut: 147
+
+real	27m50.380s
+user	27m49.068s
+sys	0m0.216s
+Processing netlists/C880.txt file..
+project.exe netlists/C880.txt 2 1 1
+
+Number of Cells: 260
+Num Nets: 234
+Done, best cut: 28
+
+real	0m16.992s
+user	0m16.980s
+sys	0m0.000s
+Processing netlists/cm138a.txt file..
+project.exe netlists/cm138a.txt 2 1 1
+
+Number of Cells: 24
+Num Nets: 16
+Done, best cut: 4
+
+real	0m0.511s
+user	0m0.508s
+sys	0m0.000s
+Processing netlists/cm150a.txt file..
+project.exe netlists/cm150a.txt 2 1 1
+
+Number of Cells: 36
+Num Nets: 35
+Done, best cut: 6
+
+real	0m0.740s
+user	0m0.740s
+sys	0m0.000s
+Processing netlists/cm151a.txt file..
+project.exe netlists/cm151a.txt 2 1 1
+
+Number of Cells: 22
+Num Nets: 20
+Done, best cut: 4
+
+real	0m0.240s
+user	0m0.236s
+sys	0m0.000s
+Processing netlists/cm162a.txt file..
+project.exe netlists/cm162a.txt 2 1 1
+
+Number of Cells: 37
+Num Nets: 32
+Done, best cut: 5
+
+real	0m0.838s
+user	0m0.840s
+sys	0m0.000s
+Processing netlists/cps.txt file..
+project.exe netlists/cps.txt 2 1 1
+
+Number of Cells: 882
+Num Nets: 773
+Done, best cut: 105
+
+real	10m57.798s
+user	10m57.328s
+sys	0m0.052s
+Processing netlists/e64.txt file..
+project.exe netlists/e64.txt 2 1 1
+
+Number of Cells: 403
+Num Nets: 338
+Done, best cut: 56
+
+real	0m35.859s
+user	0m35.832s
+sys	0m0.008s
+Processing netlists/paira.txt file..
+project.exe netlists/paira.txt 2 1 1
+
+Number of Cells: 951
+Num Nets: 814
+Done, best cut: 2
+
+real	1m52.549s
+user	1m52.432s
+sys	0m0.044s
+Processing netlists/pairb.txt file..
+project.exe netlists/pairb.txt 2 1 1
+
+Number of Cells: 951
+Num Nets: 814
+Done, best cut: 2
+
+real	1m53.593s
+user	1m53.468s
+sys	0m0.024s
